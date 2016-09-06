@@ -1,0 +1,25 @@
+<nav class="z-depth-0">
+  <div class="nav-wrapper container">
+
+    <% if signed_in? %>
+      <%= link_to 'date(ish)', profiles_path, class: "brand-logo"%>
+    <% else %>
+      <%= link_to 'date(ish)', root_path, class: "brand-logo"%>
+    <% end %>
+
+    <ul class="right">
+      <div class="col s4 push-right">
+
+        <% if signed_in? %>
+          <li><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to 'profile', profile_path(current_user) %></li>
+        <% else %>
+          <li><%=link_to 'Login', new_user_session_path %></li>
+          <li><%=link_to 'Sign Up', new_user_registration_path %></li>
+        <% end %>
+
+        <li><%=link_to 'About' %></li>
+      </div>
+    </ul>
+  </div>
+</nav>

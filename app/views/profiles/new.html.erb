@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col s12">
+    <p>1.Your favorite item: What is something you can't live without?</p>
+    <p>2.Your favorite word...swear word that is: Why do we ask or care? It tells a lot about
+                        someone or maybe it doesn't matter at all, but it's funny.</p>
+    <p>3.Your interests: Help us connect you with others with your interests.</p>
+  </div>
+</div>
+
+<div>
+  <h6><strong class="upcase"><%= current_user.first_name %> <%= current_user.last_name %>:</strong> Profile</h6>
+  <%= render(partial:'profile_info') %>
+</div>

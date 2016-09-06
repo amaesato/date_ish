@@ -1,0 +1,54 @@
+<div class="row left-border">
+<% if @profile.errors.any? %>
+	<ul>
+ 	<% @profile.errors.full_messages.each do |error| %>
+ 		<li><%= error %></li>
+ 		<% end %>
+	</ul>
+<% end %>
+
+<%= form_for @profile, html: {class: 'col s12 m8'} do |f| %>
+  <div class="input-field">
+    <%= f.label :favorite_item, class: 'active' %>
+    <%= f.text_field :favorite_item, required: true %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :favorite_swearword, 'Favorite word', class: 'active' %>
+    <%= f.select :favorite_swearword, Profile.swearword, {include_blank: "what's your favorite word?"},required: true %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :interests, class: 'active' %>
+    <%= f.select :interests, Profile.interests, {},multiple: true%>
+  </div>
+
+	<div class="input-field">
+		<%= f.label :bio, 'five word bio', class: 'active' %>
+		<%= f.text_field :bio, placeholder: 'describe yourself in 5 words', required: true %>
+	</div>
+
+  <div class="input-field">
+    <%= f.check_box :active, id: 'filled-in-box', class: 'filled-in', checked: true %>
+    <%= f.label :active, 'Active account', for: 'filled-in-box'%>
+  </div>
+
+<br />
+  <div class="input-field">
+    <i class="material-icons">add_a_photo</i>
+    <%= f.label :image, 'Profile Picture', class: 'active'%>
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="input-field">
+    <%= f.submit %>
+  </div>
+  <%end%>
+</div>
+
+
+<script>
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+</script>

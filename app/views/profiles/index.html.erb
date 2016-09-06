@@ -1,0 +1,39 @@
+
+  <div class="row">
+    <div class="col s12 m4">
+      <%= form_tag(profiles_path, :method => 'get', id: "search_form", class: "black-text") do  %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search for people" %>
+      <% end %>
+      <%= link_to 'female', profiles_path(filter: 'female') %>
+    </div>
+
+    <div class="col s12 m6">
+      <p class="lead right-align"><%= current_user.user_name %>  //
+        <% if current_user.profile.present? %>
+          <%= link_to 'my profile', profile_path(current_user) %></p>
+        <% else %>
+          <%= link_to 'my profile', new_profile_path %></p>
+        <% end %>
+    </div>
+  </div>
+<div class="row">
+<% if @profiles.present? %>
+  <% @profiles.each do |profile| %>
+    <%= link_to profile_path(profile) do %>
+      <% person = User.find(profile.user_id) %>
+      <div class="col s12 m4">
+        <div class="pull-left"><%= image_tag profile.image.url(:small), class: 'responsive-img profile-img'%></div>
+        <p><%= "#{person.first_name} #{person.last_name}" %><br />
+        <p><%= profile.item %><br />
+           <%= profile.word %></p>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+<% else %>
+  <div class="row">
+    <div class="col s12 m4"><%= image_tag('field_notes.jpeg',class: 'responsive-img') %></div>
+    <div class="col s12 m8"><%= image_tag('books.jpeg',class: 'responsive-img') %></div>
+    <div class="col s12 m8"><p class="flow-text">: Start your search.</p> </div>
+  </div>
+<% end %>

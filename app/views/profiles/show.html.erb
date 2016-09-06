@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col s12 m6">
+    <%= image_tag @profile.image.url(:small), class: 'responsive-img profile-img'%>
+  </div>
+
+  <div class="col s12 m6">
+    <h5><%= @user.first_name %></h5>
+    <p class="lead"><%= @profile.item %><br />
+                    <%= @profile.word %><br />
+                    <%= @profile.interests %></p>
+
+    <% if current_user.id.eql?(@profile.user_id) %>
+      <p><%= link_to 'Edit Profile', edit_profile_path(@profile) %></p>
+    <% end %>
+  </div>
+</div>
